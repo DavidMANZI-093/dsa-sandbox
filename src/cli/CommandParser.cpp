@@ -4,6 +4,7 @@
 #include "CommandParser.h"
 #include "../utils/Exceptions.h"
 #include "commands/HelpCommand.h"
+#include "commands/ListCommand.h"
 
 void CommandParser::Parse(int argc, char** argv) {
     if (argc < 2) { throw utils::Exception("\n  No arguments were provided.\n  Please use '--help' or '-h' for more information.\n"); }
@@ -11,7 +12,8 @@ void CommandParser::Parse(int argc, char** argv) {
         {
             {"--run", 1}, {"-r", 1},
             {"--help", 2}, {"-h", 2},
-            {"--version", 3}, {"-v", 3}
+            {"--version", 3}, {"-v", 3},
+            {"--list", 4}, {"-l", 4}
         }
     };
 
@@ -27,6 +29,9 @@ void CommandParser::Parse(int argc, char** argv) {
             break;
         case 3:
             std::cout << "\n  dsa-sandbox v0.1.0\n" << std::endl;
+            break;
+        case 4:
+            cli::ListCommand().Execute();
             break;
         default:
             utils::Exception ex("\n  No valid argument was provided.\n  Please use '--help' or '-h' for more information.\n");

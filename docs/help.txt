@@ -5,6 +5,7 @@
     dsa-sandbox [COMMAND] [OPTIONS]
 
   COMMANDS:
+    -l, --list          List all available algorithm and data structure examples
     -r, --run <file>    Run a specific algorithm or data structure implementation
     -h, --help          Show this help message and exit
     -v, --version       Show version information
@@ -15,6 +16,9 @@
 
     dsa-sandbox --version
       Show version information
+
+    dsa-sandbox --list
+      List all available algorithm and data structure examples
 
     dsa-sandbox --run <file>
       Run a specific algorithm or data structure implementation

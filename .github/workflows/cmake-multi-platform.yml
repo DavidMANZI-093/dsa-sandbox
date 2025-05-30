@@ -50,18 +50,34 @@ jobs:
 
     - name: Create Build Environment
       run: |
-        mkdir -p ${{ github.workspace }}/build
-        cd ${{ github.workspace }}/build
-        cmake -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} ..
+        if [ "$RUNNER_OS" = "Windows" ]; then
+          mkdir -p "${{ github.workspace }}\\build"
+          cd "${{ github.workspace }}\\build"
+          cmake -G "Visual Studio 17 2022" -A x64 -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} ..
+        else
+          mkdir -p "${{ github.workspace }}/build"
+          cd "${{ github.workspace }}/build"
+          cmake -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} ..
+        fi
 
     - name: Build
       shell: bash
       run: |
-        cd ${{ github.workspace }}/build
-        cmake --build . --config ${{ matrix.build_type }}
+        if [ "$RUNNER_OS" = "Windows" ]; then
+          cd "${{ github.workspace }}\\build"
+          cmake --build . --config ${{ matrix.build_type }}
+        else
+          cd "${{ github.workspace }}/build"
+          cmake --build . --config ${{ matrix.build_type }}
+        fi
 
     - name: Run tests
       shell: bash
       run: |
-        cd ${{ github.workspace }}/build
-        ctest -C ${{ matrix.build_type }} --output-on-failure
+        if [ "$RUNNER_OS" = "Windows" ]; then
+          cd "${{ github.workspace }}\\build"
+          ctest -C ${{ matrix.build_type }} --output-on-failure
+        else
+          cd "${{ github.workspace }}/build"
+          ctest -C ${{ matrix.build_type }} --output-on-failure
+        fi

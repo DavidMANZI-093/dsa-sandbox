@@ -1,0 +1,26 @@
+  dsa-sandbox - A command-line tool for experimenting with Data Structures
+                and Algorithms
+
+  USAGE:
+    dsa-sandbox [COMMAND] [OPTIONS]
+
+  COMMANDS:
+    -r, --run <file>    Run a specific algorithm or data structure implementation
+    -h, --help          Show this help message and exit
+    -v, --version       Show version information
+
+  EXAMPLES:
+    dsa-sandbox --help
+      Show this help message
+
+    dsa-sandbox --version
+      Show version information
+
+    dsa-sandbox --run <file>
+      Run a specific algorithm or data structure implementation
+
+  VERSION:
+    dsa-sandbox v0.1.0
+
+  For more information, please visit the project
+  repository at https://github.com/DavidMANZI-093/dsa-sandbox.
